@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ECSHOP 管理中心 - 添加新商品 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/general.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/main.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/commontwo.css" rel="stylesheet" type="text/css" />
+    <!-- 预留模块,以便以后引入更多的文件-->
+    <block name="css"></block>
+
+</head>
+<body>
+<block name="top">
+    <h1>
+    <span class="action-span"><a href="{:U('index')}">商品列表</a>
+    </span>
+        <span class="action-span1"><a href="index.php?p=back&c=Index&a=main">ECSHOP 管理中心</a></span>
+        <span id="search_id" class="action-span1"> - {$mate_title} </span>
+        <div style="clear:both"></div>
+    </h1>
+</block>
+
+
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front" id="general-tab">通用信息</span>
+        </p>
+    </div>
+
+
+    <!--主体部分修改较多,分出一个模块-->
+    <block name="mainBody">
+    <div id="tabbody-div">
+        <form action="{:U('')}" method="post">
+            <table width="90%" id="general-table" align="center">
+                <tr>
+                    <td class="label">供应商：</td>
+                    <td><input type="text" name="name" value="{$name}"size="30" />
+                </tr>
+                <tr>
+                    <td class="label">排序：</td>
+                    <td>
+                        <input type="text" name="sort" value="{$sort|default=10}" size="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">供应商描述：</td>
+                    <td>
+                        <textarea name="intro" cols="40" rows="3">{$intro}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">是否显示：</td>
+                    <td>
+                        <input type="radio" class="status" name="status" value="1"/>是
+                        <input type="radio" class="status" name="status" value="0"/>否
+                    </td>
+                </tr>
+            </table>
+            <div class="button-div">
+                <input type="hidden" name="id" value="{$id}">
+                <input type="button" value=" 确定 " class="ajax-post"/>
+                <input type="reset" value=" 重置 " class="button" />
+            </div>
+        </form>
+    </div>
+    </block>
+
+
+</div>
+<script type="text/javascript" src="__JS__/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__LAYER__"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.status').val([{$status|default=1}]);
+
+    })
+</script>
+<script type="text/javascript" src="__JS__/common.js"></script>
+<!--预留js的模块-->
+<block name="js"></block>
+</body>
+</html>

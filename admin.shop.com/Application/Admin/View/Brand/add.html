@@ -1,0 +1,80 @@
+<extend name="Common:add"/>
+<block name="css">
+    <!--<link href="__UPLOADIFY__/uploadify.css" rel="stylesheet" type="text/css" />-->
+</block>
+<block name="mainBody">
+    <div id="tabbody-div">
+        <form action="{:U('')}" method="post">
+            <table width="90%" id="general-table" align="center">
+                                    <tr>
+                        <td class="label">品牌名称</td>
+                                                <td><input type="text" name="name" value="{$name}" size="30" />
+                                            </tr>
+                                    <tr>
+                        <td class="label">品牌网址</td>
+                                                <td><input type="text" name="url" value="{$url}" size="30" />
+                                            </tr>
+                                    <tr>
+                        <td class="label">品牌LOGO</td>
+                                                <td><input id="logo_uploader" type="file" name="logo"/>
+                                                    <div class="upload-img-box" style="display: none">
+                                                        <div class="upload-pre-item">
+                                                            <img src="">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    <tr>
+                        <td class="label">排序</td>
+                                                <td><input type="text" name="sort" value="{$sort}" size="30" />
+                                            </tr>
+                                    <tr>
+                        <td class="label">品牌简介</td>
+                                                <td><textarea name="intro" cols="40" rows="3">{$intro}</textarea></td>
+                                            </tr>
+                                    <tr>
+                        <td class="label">是否显示</td>
+                                                <td>
+                                                        <input type="radio" class="status" name="status" value="1"/>是
+                                                    <input type="radio" class="status" name="status" value="0"/>否                                                    </td>
+                                            </tr>
+                            </table>
+            <div class="button-div">
+                <input type="hidden" name="id" value="{$id}">
+                <input type="button" value=" 确定 " class="ajax-post"/>
+                <input type="reset" value=" 重置 " class="button" />
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__UPLOADIFY__/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+
+            $('#logo_uploader').uploadify({
+                'swf'      : '__UPLOADIFY__/uploadify.swf',     //flash插件
+                'uploader' : "{:U('Upload/index')}",     //上传到哪一个文件
+                'width'    :120,            //宽度
+                'height'      :30,          //高度
+                'buttonText'    :'上传图片',    //按钮式上面的文字
+                'debug'     : true,         //是否开启调试模式
+//                'fileObjName': 'xxx',     //文件上传的名字
+                'fileSizeLimit' :   '2MB',  //文件上传传输的大小
+                formData    :{'dir':'brand'},    //文件传递时附带的参数
+//                'fileTypeExts'  :'*.jpg ; *.png; *.gif',
+//                'fileTypeExts' : '*.gif; *.jpg; *.png',
+                'onUploadSuccess' : function(file, data, response) {  //data就是响应的 上传后的地址
+                    $('.upload-img-box').show(); //显示出div
+                    $('.upload-img-box .upload-pre-item img').attr('src','/Uploads/'+data);
+                    $('.logo').val(data);  //将上传后的路径同时也放到隐藏域中.. 一起提交给服务器.
+                },
+                'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+                    alert('The file ' + file.name + ' could not be uploaded: ' + errorString);
+                }
+
+            });
+        });
+    </script>
+</block>

@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ECSHOP 管理中心 - 添加新商品 </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/general.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<block name="top">
+    <h1>
+    <span class="action-span"><a href="{:U('index')}">商品列表</a>
+    </span>
+        <span class="action-span1"><a href="index.php?p=back&c=Index&a=main">ECSHOP 管理中心</a></span>
+        <span id="search_id" class="action-span1"> - {$mate_title} </span>
+        <div style="clear:both"></div>
+    </h1>
+</block>
+
+<div class="tab-div">
+    <div id="tabbar-div">
+        <p>
+            <span class="tab-front" id="general-tab">通用信息</span>
+        </p>
+    </div>
+    <div id="tabbody-div">
+        <form action="{:U('')}" method="post">
+            <table width="90%" id="general-table" align="center">
+                <tr>
+                    <td class="label">请输入表名：</td>
+                    <td><input type="text" name="table_name" value="" size="30" />
+                </tr>
+            </table>
+            <div class="button-div">
+                <input type="hidden" name="id" value="{$id}">
+                <input type="submit" value=" 确定 "/>
+                <input type="reset" value=" 重置 " class="button" />
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="__JS__/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__LAYER__"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.status').val([{$status|default=1}]);
+
+    })
+</script>
+<script type="text/javascript" src="__JS__/common.js"></script>
+</body>
+</html>

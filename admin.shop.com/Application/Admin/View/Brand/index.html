@@ -1,0 +1,26 @@
+<extend name="Common:index"/>
+
+<block name="mainBody">
+
+    <table cellpadding="3" cellspacing="1">
+        <tr>
+            <th width="80px">ID<input type="checkbox" class="selectAll"/></th>
+                        <th>品牌名称</th>
+                        <th>品牌网址</th>
+                        <th>品牌LOGO</th>
+                        <th>排序</th>
+                        <th>品牌简介</th>
+                        <th>是否显示</th>
+                        <th>操作</th>
+        <tr>
+            <volist name="rows" id="row">
+                <tr>
+                    <td>{$row.id}<input type="checkbox" class="ids" name="id[]" value="{$row.id}"/></td>
+                    <td class="first-cell">{$row.name}</td><td align="center">{$row.url}</td><td align="center">{$row.logo}</td><td align="center">{$row.sort}</td><td align="center">{$row.intro}</td><td align="center"><a class="ajax-get" href="{:U('changeStatus',array('id'=>$row['id'],'status'=>(1-$row['status'])))}"><img src="__IMG__/{$row.status}.gif"/></a></td>                    <td>
+                        <a href="{:U('edit',array('id'=>$row['id']))}">编辑</a> <a class="ajax-get" href="{:U('changeStatus',array('id'=>$row['id']))}">移除</a>
+                    </td>
+                </tr>
+            </volist>
+    </table>
+
+</block>
