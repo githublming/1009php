@@ -20,5 +20,7 @@ return array(
         '__LAYER__'          =>WEB_URL.'Public/Admin/layer/layer.js',
         '__UPLOADIFY__'      =>WEB_URL.'Public/Admin/uploadify',
         '__DOUDOUSHOP__'     =>'http://doudoushop.b0.upaiyun.com/',
+        '__TREEGRID__'       =>WEB_URL.'Public/Admin/treegrid',
+        '__ZTREE__'       =>WEB_URL.'Public/Admin/zTree',
     ),
 );

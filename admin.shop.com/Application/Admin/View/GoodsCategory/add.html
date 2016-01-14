@@ -1,0 +1,102 @@
+<extend name="Common:add"/>
+
+<block name="css">
+    <link href="__ZTREE__/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+</block>
+
+<block name="mainBody">
+    <div id="tabbody-div">
+        <form action="{:U('')}" method="post">
+            <table width="90%" id="general-table" align="center">
+                                    <tr>
+                        <td class="label">分类名称</td>
+                                                <td><input type="text" name="name" value="{$name}" size="30" />
+                                            </tr>
+                                    <tr>
+                        <td class="label">父分类</td>
+                                        <input type="hidden" name="parent_id" class="parent_id" value="0" size="30" />
+                                                <td><input type="text" name="parent_name" class="parent_name" value="默认顶级分类" size="30" disabled="disabled"/>
+                                            </tr>
+                <tr>
+                    <td class="label"></td>
+                    <td>
+                        <style type="text/css">
+                            .ztree{
+                                margin-top: 10px;
+                                border: 1px solid #617775;
+                                background: #f0f6e4;
+                                width: 220px;
+                                height: auto;
+                                overflow-y: scroll;
+                                overflow-x: auto;
+                            }
+                        </style>
+                        <ul id="treeDemo" class="ztree"></ul>
+                    </td>
+                </tr>
+                                    <tr>
+                        <td class="label">分类简介</td>
+                                                <td><textarea name="intro" cols="40" rows="3">{$intro}</textarea></td>
+                                            </tr>
+                                    <tr>
+                        <td class="label">是否显示</td>
+                                        <td>
+                                            <input type="radio" class="status" name="status" value="1"/>是
+                                            <input type="radio" class="status" name="status" value="0"/>否
+                                        </td>
+                                            </tr>
+                            </table>
+            <div class="button-div">
+                <input type="hidden" name="id" value="{$id}">
+                <input type="submit" value=" 确定 " class=""/>
+                <input type="reset" value=" 重置 " class="button" />
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__ZTREE__/js/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            //设置树对像的参数
+            var setting = {
+                data: {
+                    simpleData: {
+                        enable: true,
+                        pIdKey: "parent_id",
+                    }
+                },
+                //数里面的回调函数
+                callback: {
+                    onClick: function(event, treeId, treeNode){
+                        //返回的主要参数保存在treeNode里面  得到之后放在表单元素里面
+                        $('.parent_name').val(treeNode.name);
+                        $('.parent_id').val(treeNode.id);
+                    }
+
+                }
+            }
+            //准备需要展示的数据
+            var zNodes ={$rows};
+
+            //把找到的对像变化为树对像
+            var treeObj=$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+            //调用对象的方法展开树对像的每一个节点
+            <empty name='id'>
+                        //表示添加,  展开所有的节点
+                    treeObj.expandAll(true);
+            <else/>
+            //表示编辑. 从treeObj中找到需要被选中的节点对象
+            var parent_id = {$parent_id};
+            var node = treeObj.getNodeByParam('id',parent_id); //根据parent_id自己的值,找自己对应的节点
+            treeObj.selectNode(node); //通过树对象treeObj 选中 找到的节点node
+
+            //将选中的节点的名字和id赋值给表单元素
+            $('.parent_name').val(node.name);
+            $('.parent_id').val( node.id);
+            </empty>
+
+        })
+    </script>
+</block>

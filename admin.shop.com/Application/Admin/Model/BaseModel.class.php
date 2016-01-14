@@ -18,7 +18,7 @@ class BaseModel extends Model
     protected $patchValidate = true;
 
     //重新定义select方法
-    public function select($wheres = array())
+    public function getList($wheres = array())
     {
         //查询条件为数据状态大于 -1  的数据
         if (!empty($wheres)) {

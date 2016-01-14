@@ -35,8 +35,9 @@ class BaseController extends Controller
         $wheres = array();
         $wheres['name'] = array('like', "%{$name}%");
         //>>获取供货商的数据
-        $arr = $this->model->select($wheres);
+        $arr = $this->model->getList($wheres);
         //>>展示供货商的数据  $arr是一个具有键名的二维数组  直接分配到页面
+        dump($arr);
         $this->assign($arr);
         //>>获取展示页面的时候保存  当前请求的url地址到cookie里面
         cookie('__url__', $_SERVER['REQUEST_URI']);
