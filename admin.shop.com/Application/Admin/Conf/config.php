@@ -19,5 +19,6 @@ return array(
         '__JS__'             =>WEB_URL.'Public/Admin/js',
         '__LAYER__'          =>WEB_URL.'Public/Admin/layer/layer.js',
         '__UPLOADIFY__'      =>WEB_URL.'Public/Admin/uploadify',
+        '__DOUDOUSHOP__'     =>'http://doudoushop.b0.upaiyun.com/',
     ),
 );

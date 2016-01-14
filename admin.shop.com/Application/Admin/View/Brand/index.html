@@ -16,7 +16,7 @@
             <volist name="rows" id="row">
                 <tr>
                     <td>{$row.id}<input type="checkbox" class="ids" name="id[]" value="{$row.id}"/></td>
-                    <td class="first-cell">{$row.name}</td><td align="center">{$row.url}</td><td align="center">{$row.logo}</td><td align="center">{$row.sort}</td><td align="center">{$row.intro}</td><td align="center"><a class="ajax-get" href="{:U('changeStatus',array('id'=>$row['id'],'status'=>(1-$row['status'])))}"><img src="__IMG__/{$row.status}.gif"/></a></td>                    <td>
+                    <td class="first-cell">{$row.name}</td><td align="center">{$row.url}</td><td align="center"><img src="__DOUDOUSHOP__{$row.logo}!mini" width="30px"/></td><td align="center">{$row.sort}</td><td align="center">{$row.intro}</td><td align="center"><a class="ajax-get" href="{:U('changeStatus',array('id'=>$row['id'],'status'=>(1-$row['status'])))}"><img src="__IMG__/{$row.status}.gif"/></a></td>                    <td>
                         <a href="{:U('edit',array('id'=>$row['id']))}">编辑</a> <a class="ajax-get" href="{:U('changeStatus',array('id'=>$row['id']))}">移除</a>
                     </td>
                 </tr>

@@ -16,7 +16,9 @@
                                             </tr>
                                     <tr>
                         <td class="label">品牌LOGO</td>
-                                                <td><input id="logo_uploader" type="file" name="logo"/>
+                                                <td>
+                                                    <input type="hidden" name="logo" class="logo"/>
+                                                    <input id="logo_uploader" type="file" name="logo"/>
                                                     <div class="upload-img-box" style="display: none">
                                                         <div class="upload-pre-item">
                                                             <img src="">
@@ -62,12 +64,13 @@
                 'debug'     : true,         //是否开启调试模式
 //                'fileObjName': 'xxx',     //文件上传的名字
                 'fileSizeLimit' :   '2MB',  //文件上传传输的大小
-                formData    :{'dir':'brand'},    //文件传递时附带的参数
+                formData    :{'dir':'doudoushop'},    //文件传递时附带的参数
 //                'fileTypeExts'  :'*.jpg ; *.png; *.gif',
 //                'fileTypeExts' : '*.gif; *.jpg; *.png',
                 'onUploadSuccess' : function(file, data, response) {  //data就是响应的 上传后的地址
+                    console.debug(data);
                     $('.upload-img-box').show(); //显示出div
-                    $('.upload-img-box .upload-pre-item img').attr('src','/Uploads/'+data);
+                    $('.upload-img-box .upload-pre-item img').attr('src','__DOUDOUSHOP__'+data);
                     $('.logo').val(data);  //将上传后的路径同时也放到隐藏域中.. 一起提交给服务器.
                 },
                 'onUploadError' : function(file, errorCode, errorMsg, errorString) {
